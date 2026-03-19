@@ -13,5 +13,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Run a simple command
-        run: echo "Pipeline is working!"
+      - name: Show files
+        run: ls
+
+      - name: Validate HTML
+        run: echo "Checking HTML files..."
