@@ -18,3 +18,8 @@ jobs:
 
       - name: Validate HTML
         run: echo "Checking HTML files..."
+
+      - name: Run Test
+        run: |
+          echo "Running tests..."
+          exit 1
