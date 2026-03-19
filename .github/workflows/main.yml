@@ -1,4 +1,4 @@
-name: My First Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -6,19 +6,15 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Show files
-        run: ls
-
-      - name: Validate HTML
-        run: echo "Checking HTML files..."
-
-      - name: Run Test
-        run: |
-          echo "Running tests..."
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
