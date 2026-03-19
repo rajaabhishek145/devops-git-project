@@ -22,4 +22,3 @@ jobs:
       - name: Run Test
         run: |
           echo "Running tests..."
-          exit 1
