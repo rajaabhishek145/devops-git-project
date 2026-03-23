@@ -1,20 +1,18 @@
-name: CI Pipeline
+name: Docker CI Pipeline
 
 on:
   push:
     branches:
       - main
+      - feature-docker-cicd
 
 jobs:
-  build:
+  docker-build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: List files
-        run: ls
-
-      - name: Validate HTML
-        run: echo "Checking HTML files..."
+      - name: Build docker image
+        run: docker build -t devops-app .
