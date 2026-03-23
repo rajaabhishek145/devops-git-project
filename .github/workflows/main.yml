@@ -7,12 +7,18 @@ on:
       - feature-docker-cicd
 
 jobs:
-  docker-build:
+  docker-build-and-push:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Build docker image
-        run: docker build -t devops-app .
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:v1 .
+
+      - name: Push Docker Image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:v1
